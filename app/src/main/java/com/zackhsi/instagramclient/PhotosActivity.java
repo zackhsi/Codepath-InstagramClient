@@ -1,17 +1,41 @@
 package com.zackhsi.instagramclient;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class PhotosActivity extends ActionBarActivity {
+
+    public static final String CLIENT_ID = "ef097a910ab745408953d9c3f32ad87d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        fetchPopularPhotos();
+    }
+
+    private void fetchPopularPhotos() {
+        String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Log.i("DEBUG", response.toString());
+            }
+        });
+
     }
 
 
