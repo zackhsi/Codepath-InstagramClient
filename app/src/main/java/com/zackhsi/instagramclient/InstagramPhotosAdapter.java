@@ -34,7 +34,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
 
         ivAvatar.setImageResource(0);
-        Picasso.with(getContext()).load(photo.userImageUrl).into(ivAvatar);
+        Picasso.with(getContext()).load(photo.userImageUrl).resize(50, 50).into(ivAvatar);
         tvUsername.setText(photo.username);
         tvCaption.setText(photo.caption);
         ivPhoto.setImageResource(0);
