@@ -41,25 +41,29 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llComments"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/ivPhoto"
-        android:padding="2dp"
-        android:id="@+id/ivSpeechBubble"
-        android:src="@drawable/speech_bubble" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:id="@+id/tvCaption"
-        android:textSize="13sp"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/ivPhoto"
-        android:layout_toRightOf="@id/ivSpeechBubble" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:id="@+id/ivSpeechBubble"
+            android:src="@drawable/speech_bubble" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:id="@+id/tvCaption"
+            android:textSize="13sp" />
+    </LinearLayout>
 
 </RelativeLayout>
