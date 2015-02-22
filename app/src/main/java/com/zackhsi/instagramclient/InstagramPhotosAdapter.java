@@ -1,6 +1,7 @@
 package com.zackhsi.instagramclient;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ivAvatar.setImageResource(0);
         Picasso.with(getContext()).load(photo.userImageUrl).resize(75, 75).into(ivAvatar);
         tvUsername.setText(photo.username);
-        tvCaption.setText(photo.caption);
+        tvCaption.setText(Html.fromHtml("<font color=#3D719D>" + photo.username + "</font> " + photo.caption));
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
         tvLikes.setText(photo.likesCount + " likes");
