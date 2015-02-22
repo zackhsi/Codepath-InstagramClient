@@ -12,17 +12,23 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class PhotosActivity extends ActionBarActivity {
 
     public static final String CLIENT_ID = "ef097a910ab745408953d9c3f32ad87d";
 
+    private ArrayList<InstagramPhoto> photos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        photos = new ArrayList<>();
         fetchPopularPhotos();
     }
 
@@ -32,7 +38,23 @@ public class PhotosActivity extends ActionBarActivity {
         client.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.i("DEBUG", response.toString());
+                try {
+                    JSONArray data = response.getJSONArray("data");
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject photoJSON = data.getJSONObject(i);
+                        InstagramPhoto photo = new InstagramPhoto();
+                        photo.username = photoJSON.getJSONObject("user").getString("username");
+                        photo.caption = photoJSON.getJSONObject("caption").getString("text");
+                        photo.imageUrl = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
+                        photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
+                        photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
+                        photo.createdAt = photoJSON.getInt("created_time");
+                        photo.userImageUrl = photoJSON.getJSONObject("user").getString("profile_picture");
+                        photos.add(photo);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
