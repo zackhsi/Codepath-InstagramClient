@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -23,12 +24,16 @@ public class PhotosActivity extends ActionBarActivity {
     public static final String CLIENT_ID = "ef097a910ab745408953d9c3f32ad87d";
 
     private ArrayList<InstagramPhoto> photos;
+    private InstagramPhotosAdapter aPhotos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
         photos = new ArrayList<>();
+        aPhotos = new InstagramPhotosAdapter(this, photos);
+        ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
+        lvPhotos.setAdapter(aPhotos);
         fetchPopularPhotos();
     }
 
@@ -55,6 +60,8 @@ public class PhotosActivity extends ActionBarActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                aPhotos.notifyDataSetChanged();
             }
         });
 
