@@ -38,7 +38,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvCreatedAgo = (TextView) convertView.findViewById(R.id.tvCreatedAgo);
 
         ivAvatar.setImageResource(0);
-        Picasso.with(getContext()).load(photo.userImageUrl).resize(75, 75).into(ivAvatar);
+        Picasso.with(getContext()).load(photo.userImageUrl).resize(60, 60).into(ivAvatar);
         tvUsername.setText(photo.username);
         tvCaption.setText(Html.fromHtml("<font color=#3D719D>" + photo.username + "</font> " + photo.caption));
         ivPhoto.setImageResource(0);
