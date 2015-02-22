@@ -2,6 +2,7 @@ package com.zackhsi.instagramclient;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+        TextView tvCreatedAgo = (TextView) convertView.findViewById(R.id.tvCreatedAgo);
 
         ivAvatar.setImageResource(0);
         Picasso.with(getContext()).load(photo.userImageUrl).resize(75, 75).into(ivAvatar);
@@ -42,6 +44,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
         tvLikes.setText(photo.likesCount + " likes");
+        tvCreatedAgo.setText(DateUtils.getRelativeTimeSpanString(photo.createdAt * DateUtils.SECOND_IN_MILLIS, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS));
 
         return convertView;
     }

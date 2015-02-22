@@ -35,14 +35,17 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/llUser"
         android:layout_alignBottom="@+id/llUser"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/createdAgo"
+            android:id="@+id/tvCreatedAgo"
             android:layout_gravity="center_vertical|right"
-            android:text="Created Ago"/></FrameLayout>
+            android:text="7h"
+            android:drawableLeft="@drawable/clock"
+            android:drawablePadding="1dp" /></FrameLayout>
 
     <ImageView
         android:layout_width="match_parent"
