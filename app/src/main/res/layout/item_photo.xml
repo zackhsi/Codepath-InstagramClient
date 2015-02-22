@@ -42,10 +42,34 @@
         android:scaleType="fitXY" />
 
     <LinearLayout
-        android:id="@+id/llComments"
+        android:id="@+id/llLikes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivPhoto"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:id="@+id/ivHeart"
+            android:src="@drawable/heart" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of likes"
+            android:id="@+id/tvLikes"
+            android:textColor="#3D719D"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llLikes"
         android:orientation="horizontal"
         android:layout_marginBottom="20dp">
 
@@ -59,7 +83,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test"
+            android:text="Caption"
             android:maxLines="3"
             android:ellipsize="end"
             android:id="@+id/tvCaption"
