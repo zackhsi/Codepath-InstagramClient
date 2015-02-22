@@ -44,8 +44,26 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
         tvLikes.setText(photo.likesCount + " likes");
-        tvCreatedAgo.setText(DateUtils.getRelativeTimeSpanString(photo.createdAt * DateUtils.SECOND_IN_MILLIS, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS));
+        tvCreatedAgo.setText(getCreatedAgo(photo.createdAt));
 
         return convertView;
+    }
+
+    /**
+     * @param createdAt seconds since epoch
+     * @return formatted string, e.g. '1h' or '39m'
+     */
+    private String getCreatedAgo(int createdAt) {
+        String verboseCreatedAgo = (String) DateUtils.getRelativeTimeSpanString(
+                createdAt * DateUtils.SECOND_IN_MILLIS,
+                System.currentTimeMillis(),
+                DateUtils.SECOND_IN_MILLIS
+        );
+
+        String[] quantityUnitsAgo = verboseCreatedAgo.split(" ");
+        String quantity = quantityUnitsAgo[0];
+        String units = quantityUnitsAgo[1];
+
+        return quantity + units.charAt(0);
     }
 }
